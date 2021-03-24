@@ -17,20 +17,25 @@ namespace View
             InitializeComponent();
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
+        private void relogio_Tick(object sender, EventArgs e)
         {
-            String msg1 = "Teste do";
-
-            String msg2 = " btnOK";
-
-            String msg = msg1 + msg2;
-
-            MostrarMsg(msg);
+            itsRelogio.Text = DateTime.Now.ToString();
         }
 
-        private void MostrarMsg(String msg)
+        private void FrmPrincipal_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(msg);
+            this.Hide();
+
+            FrmLogin login = new FrmLogin();
+
+            if (login.ShowDialog() == DialogResult.OK)
+            {
+                this.Show();
+            }
+            else
+            {
+                this.Close();
+            }
         }
     }
 }
