@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Model;
 
 namespace View
 {
     public partial class FrmPrincipal : Form
     {
+        
         public FrmPrincipal()
         {
             InitializeComponent();
@@ -30,12 +32,23 @@ namespace View
 
             if (login.ShowDialog() == DialogResult.OK)
             {
+                User user = (User)login.Tag;
+
+                itsUsuarioLogado.Text = user.Usuario;
+
                 this.Show();
             }
             else
             {
                 this.Close();
             }
+        }
+
+        private void tsbCadastrar_Click(object sender, EventArgs e)
+        {
+            FrmCadPessoa form = new FrmCadPessoa();
+
+            form.Show();
         }
     }
 }

@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "View", "View\View.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{0FC163FD-9FE1-46FE-8615-1558B358F4C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Control", "Control\Control.csproj", "{01475C43-03C1-4BFD-A807-157AE82B8013}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dao", "Dao\Dao.csproj", "{5BE04813-A7BF-45BB-A6D8-6EFDCA44951C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{0FC163FD-9FE1-46FE-8615-1558B358F4C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FC163FD-9FE1-46FE-8615-1558B358F4C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FC163FD-9FE1-46FE-8615-1558B358F4C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01475C43-03C1-4BFD-A807-157AE82B8013}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01475C43-03C1-4BFD-A807-157AE82B8013}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01475C43-03C1-4BFD-A807-157AE82B8013}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01475C43-03C1-4BFD-A807-157AE82B8013}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BE04813-A7BF-45BB-A6D8-6EFDCA44951C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BE04813-A7BF-45BB-A6D8-6EFDCA44951C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BE04813-A7BF-45BB-A6D8-6EFDCA44951C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BE04813-A7BF-45BB-A6D8-6EFDCA44951C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

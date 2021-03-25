@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmCadPessoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCadPessoa.Designer.cs">
+      <DependentUpon>FrmCadPessoa.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,6 +65,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmCadPessoa.resx">
+      <DependentUpon>FrmCadPessoa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -101,6 +110,10 @@
     <None Include="imagens\add-user_2.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Control\Control.csproj">
+      <Project>{01475c43-03c1-4bfd-a807-157ae82b8013}</Project>
+      <Name>Control</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{0fc163fd-9fe1-46fe-8615-1558b358f4c7}</Project>
       <Name>Model</Name>

@@ -23,11 +23,14 @@ namespace View
             User user = new User();
 
             user.Usuario = txbUsuario.Text;
-            user.Senha = txbUsuario.Text;
+            user.Senha = txbSenha.Text;
 
             if (ValidarLogin(user))
             {
+                this.Tag = user;
+
                 this.DialogResult = DialogResult.OK;
+
                 this.Close();
             }
             else
@@ -53,6 +56,36 @@ namespace View
             }
 
             return resultado;
+        }
+
+        private void brnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void txbUsuario_TextChanged(object sender, EventArgs e)
+        {
+            lblMsg.Visible = false;
+        }
+
+        private void txbSenha_MouseClick(object sender, MouseEventArgs e)
+        {
+            lblMsg.Visible = false;
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.Escape:
+                    this.Close();
+                    break;
+                case Keys.Return:
+                    btnLogin_Click(null, null);
+                    break;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

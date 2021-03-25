@@ -42,10 +42,10 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.itsUsuarioLogado = new System.Windows.Forms.ToolStripStatusLabel();
             this.barraTarefas = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.itsListarUsuarios = new System.Windows.Forms.ToolStripButton();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.relogio = new System.Windows.Forms.Timer(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tsbCadastrar = new System.Windows.Forms.ToolStripButton();
+            this.itsListarUsuarios = new System.Windows.Forms.ToolStripButton();
             this.mnsPrincipal.SuspendLayout();
             this.barraStatus.SuspendLayout();
             this.barraTarefas.SuspendLayout();
@@ -150,7 +150,7 @@
             this.barraTarefas.Dock = System.Windows.Forms.DockStyle.Left;
             this.barraTarefas.ImageScalingSize = new System.Drawing.Size(50, 50);
             this.barraTarefas.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
+            this.tsbCadastrar,
             this.itsListarUsuarios});
             this.barraTarefas.Location = new System.Drawing.Point(0, 24);
             this.barraTarefas.Name = "barraTarefas";
@@ -158,25 +158,11 @@
             this.barraTarefas.TabIndex = 2;
             this.barraTarefas.Text = "Barra de Tarefas";
             // 
-            // toolStripButton1
+            // relogio
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = global::View.Properties.Resources.add_user_2;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(52, 54);
-            this.toolStripButton1.Text = "toolStripButton1";
-            this.toolStripButton1.ToolTipText = "Cadastrar um Novo Usuário no Banco de Dados";
-            // 
-            // itsListarUsuarios
-            // 
-            this.itsListarUsuarios.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.itsListarUsuarios.Image = global::View.Properties.Resources.lista_user;
-            this.itsListarUsuarios.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.itsListarUsuarios.Name = "itsListarUsuarios";
-            this.itsListarUsuarios.Size = new System.Drawing.Size(52, 54);
-            this.itsListarUsuarios.Text = "Listar Usuários";
-            this.itsListarUsuarios.ToolTipText = "Listar Usuários do Banco de Dados";
+            this.relogio.Enabled = true;
+            this.relogio.Interval = 1000;
+            this.relogio.Tick += new System.EventHandler(this.relogio_Tick);
             // 
             // pictureBox1
             // 
@@ -189,11 +175,26 @@
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
-            // relogio
+            // tsbCadastrar
             // 
-            this.relogio.Enabled = true;
-            this.relogio.Interval = 1000;
-            this.relogio.Tick += new System.EventHandler(this.relogio_Tick);
+            this.tsbCadastrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbCadastrar.Image = global::View.Properties.Resources.add_user_2;
+            this.tsbCadastrar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbCadastrar.Name = "tsbCadastrar";
+            this.tsbCadastrar.Size = new System.Drawing.Size(52, 54);
+            this.tsbCadastrar.Text = "toolStripButton1";
+            this.tsbCadastrar.ToolTipText = "Cadastrar um Novo Usuário no Banco de Dados";
+            this.tsbCadastrar.Click += new System.EventHandler(this.tsbCadastrar_Click);
+            // 
+            // itsListarUsuarios
+            // 
+            this.itsListarUsuarios.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.itsListarUsuarios.Image = global::View.Properties.Resources.lista_user;
+            this.itsListarUsuarios.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.itsListarUsuarios.Name = "itsListarUsuarios";
+            this.itsListarUsuarios.Size = new System.Drawing.Size(52, 54);
+            this.itsListarUsuarios.Text = "Listar Usuários";
+            this.itsListarUsuarios.ToolTipText = "Listar Usuários do Banco de Dados";
             // 
             // FrmPrincipal
             // 
@@ -236,7 +237,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel itsUsuarioLogado;
         private System.Windows.Forms.ToolStrip barraTarefas;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton tsbCadastrar;
         private System.Windows.Forms.ToolStripButton itsListarUsuarios;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Timer relogio;

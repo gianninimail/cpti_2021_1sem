@@ -17,6 +17,8 @@ namespace Model
         }
 
         public String Senha { get; set; }
+
+        public Object Mochila { get; set; }
         
     }
 }
