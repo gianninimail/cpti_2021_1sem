@@ -23,5 +23,19 @@ namespace Control
                 throw new Exception(e.Message);
             }
         }
+
+        public  Dictionary<Int64, Pessoa> ListarPessoasDoArquivo()
+        {
+            try
+            {
+                PessoaDAO dao = new PessoaDAO();
+
+                return dao.ListarPessoasDoArquivo();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }

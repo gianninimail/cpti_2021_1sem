@@ -42,10 +42,10 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.itsUsuarioLogado = new System.Windows.Forms.ToolStripStatusLabel();
             this.barraTarefas = new System.Windows.Forms.ToolStrip();
-            this.relogio = new System.Windows.Forms.Timer(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tsbCadastrar = new System.Windows.Forms.ToolStripButton();
             this.itsListarUsuarios = new System.Windows.Forms.ToolStripButton();
+            this.relogio = new System.Windows.Forms.Timer(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.mnsPrincipal.SuspendLayout();
             this.barraStatus.SuspendLayout();
             this.barraTarefas.SuspendLayout();
@@ -77,19 +77,19 @@
             // 
             this.itmNovo.Name = "itmNovo";
             this.itmNovo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.itmNovo.Size = new System.Drawing.Size(146, 22);
+            this.itmNovo.Size = new System.Drawing.Size(180, 22);
             this.itmNovo.Text = "Novo";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // itmSair
             // 
             this.itmSair.Name = "itmSair";
             this.itmSair.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.itmSair.Size = new System.Drawing.Size(146, 22);
+            this.itmSair.Size = new System.Drawing.Size(180, 22);
             this.itmSair.Text = "Sair";
             // 
             // itmAbrir
@@ -158,23 +158,6 @@
             this.barraTarefas.TabIndex = 2;
             this.barraTarefas.Text = "Barra de Tarefas";
             // 
-            // relogio
-            // 
-            this.relogio.Enabled = true;
-            this.relogio.Interval = 1000;
-            this.relogio.Tick += new System.EventHandler(this.relogio_Tick);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = global::View.Properties.Resources.logo_lasalle;
-            this.pictureBox1.Location = new System.Drawing.Point(55, 24);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1073, 521);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            // 
             // tsbCadastrar
             // 
             this.tsbCadastrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -195,6 +178,24 @@
             this.itsListarUsuarios.Size = new System.Drawing.Size(52, 54);
             this.itsListarUsuarios.Text = "Listar Usuários";
             this.itsListarUsuarios.ToolTipText = "Listar Usuários do Banco de Dados";
+            this.itsListarUsuarios.Click += new System.EventHandler(this.itsListarUsuarios_Click);
+            // 
+            // relogio
+            // 
+            this.relogio.Enabled = true;
+            this.relogio.Interval = 1000;
+            this.relogio.Tick += new System.EventHandler(this.relogio_Tick);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Image = global::View.Properties.Resources.logo_lasalle;
+            this.pictureBox1.Location = new System.Drawing.Point(55, 24);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1073, 521);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
             // 
             // FrmPrincipal
             // 

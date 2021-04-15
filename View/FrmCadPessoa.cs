@@ -73,7 +73,7 @@ namespace View
             {
                 p.EstadoCivil = 1;
             }
-            else if (rdbSolteiro.Checked)
+            else if (rdbDivorciado.Checked)
             {
                 p.EstadoCivil = 2;
             }
@@ -85,5 +85,54 @@ namespace View
             return p;
         }
 
+        private void FrmCadPessoa_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.Tag != null)
+                {
+                    btnCadastrar.Visible = false;
+                    btnAtualizar.Visible = true;
+                    mtbCpf.Enabled = false;
+
+                    //Carregar os dados do Objeto Pessoa no formulário
+                    CarregarFormComDados((Pessoa)this.Tag);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private void CarregarFormComDados(Pessoa _pessoa)
+        {
+            mtbCpf.Text = _pessoa.CPF.ToString();
+            txbNome.Text = _pessoa.Nome;
+            mtbCel.Text = _pessoa.Cel;
+            txbEmail.Text = _pessoa.Email;
+            ltbTipoEnd.SelectedIndex = _pessoa.TipoEnd;
+            txbLogradouro.Text = _pessoa.Logradouro;
+            cmbEstado.SelectedIndex = _pessoa.Estado;
+            cmbCidade.SelectedIndex = _pessoa.Cidade;
+
+            if (_pessoa.EstadoCivil == 0)
+            {
+                rdbCasado.Checked = true;
+            }
+            else if (_pessoa.EstadoCivil == 1)
+            {
+                rdbSolteiro.Checked = true;
+            }
+            else if (_pessoa.EstadoCivil == 2)
+            {
+                rdbDivorciado.Checked = true;
+            }
+
+            ckbAnimais.Checked = _pessoa.Animais;
+            ckbFilhos.Checked = _pessoa.Filhos;
+            ckbFumante.Checked = _pessoa.Fumante;
+        }
     }
 }

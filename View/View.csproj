@@ -51,6 +51,12 @@
     <Compile Include="FrmCadPessoa.Designer.cs">
       <DependentUpon>FrmCadPessoa.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmListPessoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmListPessoa.Designer.cs">
+      <DependentUpon>FrmListPessoa.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +73,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmCadPessoa.resx">
       <DependentUpon>FrmCadPessoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmListPessoa.resx">
+      <DependentUpon>FrmListPessoa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>

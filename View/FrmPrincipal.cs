@@ -50,5 +50,12 @@ namespace View
 
             form.Show();
         }
+
+        private void itsListarUsuarios_Click(object sender, EventArgs e)
+        {
+            FrmListPessoa f = new FrmListPessoa();
+
+            f.ShowDialog();
+        }
     }
 }
