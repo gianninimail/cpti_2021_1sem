@@ -8,6 +8,10 @@ namespace Model
 {
     public class Pessoa
     {
+        public Pessoa()
+        {
+            this.EnderecoPadrao = new Endereco();
+        }
         public Int64 CPF { get; set; }
 
         public String Nome { get; set; }
@@ -18,14 +22,6 @@ namespace Model
 
         public String Email { get; set; }
 
-        public Int32 TipoEnd { get; set; }
-
-        public String Logradouro { get; set; }
-
-        public Int32 Estado { get; set; }
-
-        public Int32 Cidade { get; set; }
-
         public Int32 EstadoCivil { get; set; }
 
         public Boolean Animais { get; set; }
@@ -33,5 +29,7 @@ namespace Model
         public Boolean Filhos { get; set; }
 
         public bool Fumante { get; set; }
+
+        public Endereco EnderecoPadrao { get; set; }
     }
 }

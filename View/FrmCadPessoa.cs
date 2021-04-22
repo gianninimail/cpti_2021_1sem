@@ -60,10 +60,10 @@ namespace View
             p.Nome = txbNome.Text;
             p.Cel = mtbCel.Text;
             p.Email = txbEmail.Text;
-            p.TipoEnd = ltbTipoEnd.SelectedIndex;
-            p.Logradouro = txbLogradouro.Text;
-            p.Estado = cmbEstado.SelectedIndex;
-            p.Cidade = cmbCidade.SelectedIndex;
+            p.EnderecoPadrao.TipoEnd = ltbTipoEnd.SelectedIndex;
+            p.EnderecoPadrao.Logradouro = txbLogradouro.Text;
+            p.EnderecoPadrao.Estado = cmbEstado.SelectedIndex;
+            p.EnderecoPadrao.Cidade = cmbCidade.SelectedIndex;
 
             if (rdbCasado.Checked)
             {
@@ -96,7 +96,8 @@ namespace View
                     mtbCpf.Enabled = false;
 
                     //Carregar os dados do Objeto Pessoa no formulário
-                    CarregarFormComDados((Pessoa)this.Tag);
+                    Pessoa p = (Pessoa)this.Tag;
+                    CarregarFormComDados(p);
                 }
             }
             catch (Exception)
@@ -112,10 +113,10 @@ namespace View
             txbNome.Text = _pessoa.Nome;
             mtbCel.Text = _pessoa.Cel;
             txbEmail.Text = _pessoa.Email;
-            ltbTipoEnd.SelectedIndex = _pessoa.TipoEnd;
-            txbLogradouro.Text = _pessoa.Logradouro;
-            cmbEstado.SelectedIndex = _pessoa.Estado;
-            cmbCidade.SelectedIndex = _pessoa.Cidade;
+            ltbTipoEnd.SelectedIndex = _pessoa.EnderecoPadrao.TipoEnd;
+            txbLogradouro.Text = _pessoa.EnderecoPadrao.Logradouro;
+            cmbEstado.SelectedIndex = _pessoa.EnderecoPadrao.Estado;
+            cmbCidade.SelectedIndex = _pessoa.EnderecoPadrao.Cidade;
 
             if (_pessoa.EstadoCivil == 0)
             {
@@ -133,6 +134,11 @@ namespace View
             ckbAnimais.Checked = _pessoa.Animais;
             ckbFilhos.Checked = _pessoa.Filhos;
             ckbFumante.Checked = _pessoa.Fumante;
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

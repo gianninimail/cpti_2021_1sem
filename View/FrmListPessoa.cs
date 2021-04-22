@@ -33,13 +33,17 @@ namespace View
                 dgvDados.Rows.Clear();
 
                 //Chamada para o Controller (busca de dados)
-                PessoaCtrl ctrl = new PessoaCtrl();
-
-                tabelaPessoas = ctrl.ListarPessoasDoArquivo();
-
-                foreach (Pessoa item in tabelaPessoas.Values)
+                if (_filtro.Equals(""))
                 {
-                    dgvDados.Rows.Add(item.CPF, item.Nome, item.Email);
+                    PessoaCtrl ctrl = new PessoaCtrl();
+
+                    tabelaPessoas = ctrl.ListarPessoasDoArquivo();
+                }
+                
+
+                foreach (Pessoa p in tabelaPessoas.Values)
+                {
+                    dgvDados.Rows.Add(p.CPF, p.Nome, p.Email, p.EnderecoPadrao.ToString());
                 }
             }
             catch (Exception ex)
@@ -72,6 +76,26 @@ namespace View
             catch (Exception)
             {
                 throw;
+            }
+        }
+
+        private void cmsItemDeletar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataGridViewRow linha = dgvDados.SelectedRows[0];
+                DataGridViewCell celula = linha.Cells[0];
+                Int64 cpf = Convert.ToInt64(celula.Value.ToString());
+
+                tabelaPessoas.Remove(cpf);
+
+                CarregarGrid("1");
+
+                MessageBox.Show(String.Format("Pessoa com CPF: {0} foi deletada com sucesso!", cpf));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERRO AO DELETAR: " + ex.Message);
             }
         }
     }
