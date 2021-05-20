@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlServerCe;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,9 +11,11 @@ namespace Dao
 {
     public class PessoaDAO
     {
+        #region Manipulação de Dados com Arquivos
+
         //Caminho completo com Diretório de nome do Arquivo
         String path = @"C:\Users\Thiago G Ramos\source\repos\AppAula_2021_1\bd.csv";
-        
+
         public Boolean SalvarPessoaNoArquivo(Pessoa _pessoa)
         {
             bool resultado = false;
@@ -48,7 +51,7 @@ namespace Dao
 
             return resultado;
         }
-    
+
         public Dictionary<Int64, Pessoa> ListarPessoasDoArquivo()
         {
             Dictionary<Int64, Pessoa> tabelaPessoas = new Dictionary<Int64, Pessoa>();
@@ -93,19 +96,49 @@ namespace Dao
 
             return tabelaPessoas;
         }
+
+        #endregion
+
+        #region Métodos de Acesso ao Banco de Dados
+
+        public Dictionary<Int64, Pessoa> BuscarTodos()
+        {
+            Dictionary<Int64, Pessoa> mapaPessoas = new Dictionary<Int64, Pessoa>();
+            
+            try
+            {
+                String SQL = "SELECT * FROM pessoa;";
+
+                SqlCeDataReader data = BD.ExecutarSelect(SQL);
+
+                while (data.Read())
+                {
+                    Pessoa p = new Pessoa();
+
+                    p.CPF = data.GetInt64(0);
+                    p.Nome = data.GetString(1);
+                    p.Idade = data.GetInt32(2);
+                    p.Cel = data.GetString(3);
+                    p.Email = data.GetString(4);
+                    p.EstadoCivil = data.GetInt32(5);
+                    p.Animais = data.GetBoolean(6);
+                    p.Filhos = data.GetBoolean(7);
+                    p.Fumante = data.GetBoolean(8);
+
+                    mapaPessoas.Add(p.CPF, p);
+                }
+
+                data.Close();
+                BD.FecharConexao();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("BUSCAR TODOS / " + ex.Message);
+            }
+
+            return mapaPessoas;
+        }
+
+        #endregion
     }
 }
-/*
-if (campos[8].Equals("0"))
-{
-    p.EstadoCivil = 0;
-}
-else if (campos[8].Equals("1"))
-{
-    p.EstadoCivil = 1;
-}
-else if (campos[8].Equals("2"))
-{
-    p.EstadoCivil = 2;
-}
-*/

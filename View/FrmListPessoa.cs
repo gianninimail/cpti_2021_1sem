@@ -37,7 +37,7 @@ namespace View
                 {
                     PessoaCtrl ctrl = new PessoaCtrl();
 
-                    tabelaPessoas = ctrl.ListarPessoasDoArquivo();
+                    tabelaPessoas = ctrl.BuscarTodos();
                 }
                 
 

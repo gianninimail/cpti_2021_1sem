@@ -37,5 +37,21 @@ namespace Control
                 throw new Exception(e.Message);
             }
         }
+        
+        public  Dictionary<Int64, Pessoa> BuscarTodos()
+        {
+            try
+            {
+                PessoaDAO dao = new PessoaDAO();
+
+                return dao.BuscarTodos();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+    
+    
     }
 }
