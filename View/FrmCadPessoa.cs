@@ -38,7 +38,7 @@ namespace View
 
                 //Método para Armazenar Objeto Criado (Pessoa)
                 PessoaCtrl control = new PessoaCtrl();
-                if (control.SalvarPessoaNoArquivo(pess))
+                if ((Boolean)control.BD("inserir", pess))
                 {
                     MessageBox.Show("Cadastro efetuado com sucesso!");
                 }
@@ -139,6 +139,26 @@ namespace View
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnAtualizar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Método de criação do objeto do tipo Pessoa
+                Pessoa pess = CriarPessoaDoForm();
+
+                //Método para Armazenar Objeto Criado (Pessoa)
+                PessoaCtrl control = new PessoaCtrl();
+                if ((Boolean)control.BD("alterar", pess))
+                {
+                    MessageBox.Show("Alteração efetuada com sucesso!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERRO AO ALTERAR PESSOA: " + ex.Message);
+            }
         }
     }
 }

@@ -37,7 +37,7 @@ namespace View
                 {
                     PessoaCtrl ctrl = new PessoaCtrl();
 
-                    tabelaPessoas = ctrl.BuscarTodos();
+                    tabelaPessoas = (Dictionary<Int64, Pessoa>)ctrl.BD("todos", null);
                 }
                 
 
@@ -72,10 +72,12 @@ namespace View
                 formCadPessoa.Tag = p;
 
                 formCadPessoa.ShowDialog();
+
+                CarregarGrid("");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                MessageBox.Show("ERRO AO SELECIONAR: " + ex.Message);
             }
         }
 
@@ -89,9 +91,14 @@ namespace View
 
                 tabelaPessoas.Remove(cpf);
 
-                CarregarGrid("1");
+                PessoaCtrl control = new PessoaCtrl();
 
-                MessageBox.Show(String.Format("Pessoa com CPF: {0} foi deletada com sucesso!", cpf));
+                if ((Boolean)control.BD("deletar", cpf))
+                {
+                    CarregarGrid("");
+
+                    MessageBox.Show(String.Format("Pessoa com CPF: {0} foi deletada com sucesso!", cpf));
+                }
             }
             catch (Exception ex)
             {

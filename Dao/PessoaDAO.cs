@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlServerCe;
 using System.IO;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace Dao
     {
         #region Manipulação de Dados com Arquivos
 
+        //String dir = AppDomain.CurrentDomain.BaseDirectory;
         //Caminho completo com Diretório de nome do Arquivo
         String path = @"C:\Users\Thiago G Ramos\source\repos\AppAula_2021_1\bd.csv";
 
@@ -107,9 +109,9 @@ namespace Dao
             
             try
             {
-                String SQL = "SELECT * FROM pessoa;";
+                String SQL = "SELECT * FROM pessoa ORDER BY cpf;";
 
-                SqlCeDataReader data = BD.ExecutarSelect(SQL);
+                DataTableReader data = BD.ExecutarSelect(SQL);
 
                 while (data.Read())
                 {
@@ -125,6 +127,9 @@ namespace Dao
                     p.Filhos = data.GetBoolean(7);
                     p.Fumante = data.GetBoolean(8);
 
+                    EnderecoDAO daoEnd = new EnderecoDAO();
+                    p.EnderecoPadrao = daoEnd.BuscarPorID(data.GetInt32(9));
+
                     mapaPessoas.Add(p.CPF, p);
                 }
 
@@ -137,6 +142,165 @@ namespace Dao
             }
 
             return mapaPessoas;
+        }
+
+        public Pessoa BuscarPorCPF(Int64 _cpf)
+        {
+            Pessoa p = null;
+            try
+            {
+                String SQL = String.Format("SELECT * FROM pessoa WHERE cpf = {0};", _cpf);
+
+                DataTableReader data = BD.ExecutarSelect(SQL);
+                int idEnd = 0;
+                if (data.Read())
+                {
+                    p = new Pessoa();
+
+                    p.CPF = data.GetInt64(0);
+                    p.Nome = data.GetString(1);
+                    p.Idade = data.GetInt32(2);
+                    p.Cel = data.GetString(3);
+                    p.Email = data.GetString(4);
+                    p.EstadoCivil = data.GetInt32(5);
+                    p.Animais = data.GetBoolean(6);
+                    p.Filhos = data.GetBoolean(7);
+                    p.Fumante = data.GetBoolean(8);
+                    idEnd = data.GetInt32(9);
+                }
+
+                data.Close();
+                BD.FecharConexao();
+
+                EnderecoDAO daoEnd = new EnderecoDAO();
+                p.EnderecoPadrao = daoEnd.BuscarPorID(idEnd);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("BUSCAR TODOS / " + ex.Message);
+            }
+
+            return p;
+        }
+
+        public Boolean Inserir(Pessoa _obj)
+        {
+            int linhasAfetasdas = 0;
+
+            try
+            {
+                EnderecoDAO daoEnd = new EnderecoDAO();
+                int idEnd = daoEnd.Inserir(_obj.EnderecoPadrao);
+
+                String SQL = String.Format("INSERT INTO pessoa ("+
+                    "cpf," +
+                    "nome," +
+                    "idade," +
+                    "cel," +
+                    "email," +
+                    "estado_civil," +
+                    "animais," +
+                    "filhos," +
+                    "fumante," +
+                    "endereco_padrao" +
+                    ") " +
+                    "VALUES ({0}, '{1}', {2}, '{3}', '{4}', {5}, '{6}', '{7}', '{8}', {9});",
+                    _obj.CPF,
+                    _obj.Nome,
+                    _obj.Idade,
+                    _obj.Cel,
+                    _obj.Email,
+                    _obj.EstadoCivil,
+                    _obj.Animais,
+                    _obj.Filhos,
+                    _obj.Fumante,
+                    idEnd
+                    );
+
+                linhasAfetasdas = BD.ExecutarIDU(SQL);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("INSERT / " + ex.Message);
+            }
+
+            if (linhasAfetasdas > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public Boolean Deletar(Int64 _cpf)
+        {
+            int linhasAfetasdas = 0;
+
+            try
+            {
+                String SQL = "DELETE FROM pessoa WHERE cpf = " + _cpf;
+
+                linhasAfetasdas = BD.ExecutarIDU(SQL);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("DELETE / " + ex.Message);
+            }
+
+            if (linhasAfetasdas > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public Boolean Alterar(Pessoa _obj)
+        {
+            int linhasAfetasdas = 0;
+
+            try
+            {
+                String SQL = String.Format("UPDATE pessoa SET " +
+                    "nome = '{0}'," +
+                    "idade = {1}," +
+                    "cel = '{2}'," +
+                    "email = '{3}'," +
+                    "estado_civil = {4}," +
+                    "animais = '{5}'," +
+                    "filhos = '{6}'," +
+                    "fumante = '{7}'" +
+                    " WHERE cpf = {8}",
+                    _obj.Nome,
+                    _obj.Idade,
+                    _obj.Cel,
+                    _obj.Email,
+                    _obj.EstadoCivil,
+                    _obj.Animais,
+                    _obj.Filhos,
+                    _obj.Fumante,
+                    _obj.CPF
+                    );
+
+                linhasAfetasdas = BD.ExecutarIDU(SQL);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("UPDATE / " + ex.Message);
+            }
+
+            if (linhasAfetasdas > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         #endregion

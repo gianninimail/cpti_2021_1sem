@@ -10,7 +10,7 @@ namespace Dao
 {
     public static class BD
     {
-        private static String strConn = @"Data Source = C:\Users\Thiago G Ramos\source\repos\AppAula_2021_1\data_base.sdf;Password=123";
+        private static String strConn = @"Data Source = C:\Users\Thiago G Ramos\source\repos\AppAula_2021_1\data_base.sdf;Password=123;";
         private static SqlCeConnection conexao;
 
         private static void AbrirConexao()
@@ -56,6 +56,7 @@ namespace Dao
             }
         }
 
+        /*TROCADO PELO OUTRO MÉTODO PQ O DATA READER NÂO PERMITE ABRIR DUAS CONEXOES
         public static SqlCeDataReader ExecutarSelect(String _SQL)
         {
             try
@@ -66,6 +67,29 @@ namespace Dao
 
                 SqlCeDataReader data = comando.ExecuteReader();
                 
+                return data;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERRO AO EXECUTAR SELECT: " + ex.Message);
+            }
+
+        }
+        */
+        
+        public static DataTableReader ExecutarSelect(String _SQL)
+        {
+            try
+            {
+                AbrirConexao();
+
+                DataTable dt = new DataTable();
+                SqlCeCommand cmd = new SqlCeCommand(_SQL, conexao);
+                SqlCeDataAdapter db = new SqlCeDataAdapter(cmd);
+                db.Fill(dt);
+
+                DataTableReader data = dt.CreateDataReader();
+
                 return data;
             }
             catch (Exception ex)
