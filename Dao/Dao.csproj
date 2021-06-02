@@ -46,7 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BD.cs" />
+    <Compile Include="CidadeDAO.cs" />
     <Compile Include="EnderecoDAO.cs" />
+    <Compile Include="EstadoDAO.cs" />
     <Compile Include="FotoDAO.cs" />
     <Compile Include="PessoaDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

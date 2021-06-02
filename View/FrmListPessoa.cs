@@ -33,11 +33,17 @@ namespace View
                 dgvDados.Rows.Clear();
 
                 //Chamada para o Controller (busca de dados)
+                PessoaCtrl ctrl = new PessoaCtrl();
                 if (_filtro.Equals(""))
                 {
-                    PessoaCtrl ctrl = new PessoaCtrl();
-
                     tabelaPessoas = (Dictionary<Int64, Pessoa>)ctrl.BD("todos", null);
+                }
+                else
+                {
+                    if (_filtro.Length > 2)
+                    {
+                        tabelaPessoas = (Dictionary<Int64, Pessoa>)ctrl.BD("filtro", _filtro);
+                    }
                 }
                 
 
@@ -103,6 +109,18 @@ namespace View
             catch (Exception ex)
             {
                 MessageBox.Show("ERRO AO DELETAR: " + ex.Message);
+            }
+        }
+
+        private void txbFiltro_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                CarregarGrid(txbFiltro.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERRO FAZER BUSCA: " + ex.Message);
             }
         }
     }

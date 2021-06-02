@@ -86,6 +86,8 @@ namespace View
         {
             try
             {
+                CarregarComboEstados();
+
                 if (this.Tag != null)
                 {
                     btnCadastrar.Visible = false;
@@ -166,7 +168,10 @@ namespace View
             { 
                 long tamanhoArquivoImagem = 0;
 
-                string strFn = @"D:\Google Drive\Fotos\IMG_20200904_124452.jpg";
+                //string strFn = @"D:\Google Drive\Fotos\IMG_20200904_124452.jpg";
+
+                janelaArquivo.ShowDialog();
+                string strFn = janelaArquivo.FileName;
 
                 if (string.IsNullOrEmpty(strFn))
                     return;
@@ -182,6 +187,38 @@ namespace View
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+    
+        private void CarregarComboEstados()
+        {
+            try
+            {
+                EstadoCtrl contrEstado = new EstadoCtrl();
+                List<Estado> estados = contrEstado.BuscarTodos();
+
+                cmbEstado.DisplayMember = "descricao";
+                cmbEstado.ValueMember = "id";
+
+                cmbEstado.DataSource = estados;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERRO AO Carregar Combo Estados: " + ex.Message);
+            }
+        }
+
+        private void cmbEstado_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cmbEstado.SelectedValue != null)
+            {
+                //MessageBox.Show(cmbEstado.SelectedValue.ToString());
+                cmbCidade.DisplayMember = "descricao";
+                cmbCidade.ValueMember = "id";
+
+                Estado estado = (Estado)cmbEstado.SelectedItem;
+
+                cmbCidade.DataSource = estado.Cidades;
             }
         }
     }

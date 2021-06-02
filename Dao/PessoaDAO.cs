@@ -309,6 +309,59 @@ namespace Dao
             }
         }
 
+        public Dictionary<Int64, Pessoa> BuscarListaFiltrada(String _filtro)
+        {
+            Dictionary<Int64, Pessoa> mapaPessoas = new Dictionary<Int64, Pessoa>();
+
+            try
+            {
+                String SQL = "SELECT * FROM pessoa WHERE ";
+
+                Int64 saida;
+                if (Int64.TryParse(_filtro, out saida))
+                {
+                    SQL += String.Format("cpf = {0}", _filtro);
+                }
+                else
+                {
+                    SQL += String.Format("nome LIKE '%{0}%'", _filtro);
+                }
+                   
+                SQL += " ORDER BY cpf;";
+
+                DataTableReader data = BD.ExecutarSelect(SQL);
+
+                while (data.Read())
+                {
+                    Pessoa p = new Pessoa();
+
+                    p.CPF = data.GetInt64(0);
+                    p.Nome = data.GetString(1);
+                    p.Idade = data.GetInt32(2);
+                    p.Cel = data.GetString(3);
+                    p.Email = data.GetString(4);
+                    p.EstadoCivil = data.GetInt32(5);
+                    p.Animais = data.GetBoolean(6);
+                    p.Filhos = data.GetBoolean(7);
+                    p.Fumante = data.GetBoolean(8);
+
+                    EnderecoDAO daoEnd = new EnderecoDAO();
+                    p.EnderecoPadrao = daoEnd.BuscarPorID(data.GetInt32(9));
+
+                    FotoDAO daoFoto = new FotoDAO();
+                    p.Foto = daoFoto.BuscarPorID(p.CPF);
+
+                    mapaPessoas.Add(p.CPF, p);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("BUSCAR TODOS / " + ex.Message);
+            }
+
+            return mapaPessoas;
+        }
+
         #endregion
     }
 }

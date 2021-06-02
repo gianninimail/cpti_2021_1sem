@@ -63,6 +63,7 @@ namespace View
             this.btnCadastrar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAtualizar = new System.Windows.Forms.Button();
+            this.janelaArquivo = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudIdade)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbFoto)).BeginInit();
@@ -253,13 +254,6 @@ namespace View
             // cmbCidade
             // 
             this.cmbCidade.FormattingEnabled = true;
-            this.cmbCidade.Items.AddRange(new object[] {
-            "Rio de Janeiro",
-            "Niterói",
-            "Araruama",
-            "São Paulo",
-            "Belo Horizonte",
-            "Vitória"});
             this.cmbCidade.Location = new System.Drawing.Point(356, 128);
             this.cmbCidade.Name = "cmbCidade";
             this.cmbCidade.Size = new System.Drawing.Size(155, 21);
@@ -268,15 +262,11 @@ namespace View
             // cmbEstado
             // 
             this.cmbEstado.FormattingEnabled = true;
-            this.cmbEstado.Items.AddRange(new object[] {
-            "RJ",
-            "SP",
-            "MG",
-            "ES"});
             this.cmbEstado.Location = new System.Drawing.Point(356, 54);
             this.cmbEstado.Name = "cmbEstado";
             this.cmbEstado.Size = new System.Drawing.Size(155, 21);
             this.cmbEstado.TabIndex = 2;
+            this.cmbEstado.SelectedValueChanged += new System.EventHandler(this.cmbEstado_SelectedValueChanged);
             // 
             // txbLogradouro
             // 
@@ -429,6 +419,10 @@ namespace View
             this.btnAtualizar.Visible = false;
             this.btnAtualizar.Click += new System.EventHandler(this.btnAtualizar_Click);
             // 
+            // janelaArquivo
+            // 
+            this.janelaArquivo.DefaultExt = "png";
+            // 
             // FrmCadPessoa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -496,5 +490,6 @@ namespace View
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnAtualizar;
+        private System.Windows.Forms.OpenFileDialog janelaArquivo;
     }
 }
