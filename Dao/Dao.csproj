@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="BD.cs" />
     <Compile Include="EnderecoDAO.cs" />
+    <Compile Include="FotoDAO.cs" />
     <Compile Include="PessoaDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -11,6 +11,7 @@ namespace Model
         public Pessoa()
         {
             this.EnderecoPadrao = new Endereco();
+            this.Foto = new Foto();
         }
         public Int64 CPF { get; set; }
 
@@ -31,5 +32,7 @@ namespace Model
         public bool Fumante { get; set; }
 
         public Endereco EnderecoPadrao { get; set; }
+
+        public Foto Foto { get; set; }
     }
 }

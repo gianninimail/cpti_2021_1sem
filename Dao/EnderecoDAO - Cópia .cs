@@ -30,6 +30,9 @@ namespace Dao
                     p.Cidade = data.GetInt32(3);
                     p.Estado = data.GetInt32(4);
                 }
+
+                data.Close();
+                BD.FecharConexao();
             }
             catch (Exception ex)
             {

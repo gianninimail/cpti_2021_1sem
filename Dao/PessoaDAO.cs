@@ -130,11 +130,11 @@ namespace Dao
                     EnderecoDAO daoEnd = new EnderecoDAO();
                     p.EnderecoPadrao = daoEnd.BuscarPorID(data.GetInt32(9));
 
+                    FotoDAO daoFoto = new FotoDAO();
+                    p.Foto = daoFoto.BuscarPorID(p.CPF);
+
                     mapaPessoas.Add(p.CPF, p);
                 }
-
-                data.Close();
-                BD.FecharConexao();
             }
             catch (Exception ex)
             {
@@ -169,8 +169,8 @@ namespace Dao
                     idEnd = data.GetInt32(9);
                 }
 
-                data.Close();
-                BD.FecharConexao();
+                FotoDAO daoFoto = new FotoDAO();
+                p.Foto = daoFoto.BuscarPorID(p.CPF);
 
                 EnderecoDAO daoEnd = new EnderecoDAO();
                 p.EnderecoPadrao = daoEnd.BuscarPorID(idEnd);
@@ -218,6 +218,12 @@ namespace Dao
                     );
 
                 linhasAfetasdas = BD.ExecutarIDU(SQL);
+
+                if (linhasAfetasdas > 0)
+                {
+                    FotoDAO daoFoto = new FotoDAO();
+                    daoFoto.Inserir(_obj.Foto);
+                }
             }
             catch (Exception ex)
             {

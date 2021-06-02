@@ -90,6 +90,8 @@ namespace Dao
 
                 DataTableReader data = dt.CreateDataReader();
 
+                FecharConexao();
+
                 return data;
             }
             catch (Exception ex)
@@ -116,6 +118,48 @@ namespace Dao
             catch (Exception ex)
             {
                 throw new Exception("ERRO AO EXECUTAR ALTERAÇÃO: " + ex.Message);
+            }
+        }
+
+        public static int ExecutarIDU(String _SQL, List<SqlCeParameter> _parametros)
+        {
+            try
+            {
+                AbrirConexao();
+
+                SqlCeCommand comando = new SqlCeCommand(_SQL, conexao);
+
+                comando.Parameters.AddRange(_parametros.ToArray());
+
+                int linhasAfetadas = comando.ExecuteNonQuery();
+
+                FecharConexao();
+
+                return linhasAfetadas;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERRO AO EXECUTAR ALTERAÇÃO: " + ex.Message);
+            }
+        }
+
+        public static Object ExecutarSelectImagem(String _SQL)
+        {
+            try
+            {
+                AbrirConexao();
+
+                SqlCeCommand comando = new SqlCeCommand(_SQL, conexao);
+
+                Object valor = comando.ExecuteScalar();
+
+                FecharConexao();
+
+                return valor;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERRO AO EXECUTAR INSERT COM RETORNO: " + ex.Message);
             }
         }
 

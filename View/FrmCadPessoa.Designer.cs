@@ -30,7 +30,6 @@ namespace View
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.nudIdade = new System.Windows.Forms.NumericUpDown();
             this.txbEmail = new System.Windows.Forms.TextBox();
             this.mtbCel = new System.Windows.Forms.MaskedTextBox();
@@ -42,6 +41,7 @@ namespace View
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ptbFoto = new System.Windows.Forms.PictureBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -74,7 +74,6 @@ namespace View
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.nudIdade);
             this.groupBox1.Controls.Add(this.txbEmail);
             this.groupBox1.Controls.Add(this.mtbCel);
@@ -86,6 +85,7 @@ namespace View
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.ptbFoto);
+            this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(536, 206);
@@ -93,22 +93,12 @@ namespace View
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dados Principais";
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(38, 72);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(30, 13);
-            this.label10.TabIndex = 11;
-            this.label10.Text = "3 x 4";
-            // 
             // nudIdade
             // 
             this.nudIdade.Location = new System.Drawing.Point(9, 167);
             this.nudIdade.Name = "nudIdade";
-            this.nudIdade.Size = new System.Drawing.Size(96, 20);
+            this.nudIdade.Size = new System.Drawing.Size(79, 20);
             this.nudIdade.TabIndex = 10;
-            this.nudIdade.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // txbEmail
             // 
@@ -149,7 +139,6 @@ namespace View
             this.label5.Size = new System.Drawing.Size(37, 13);
             this.label5.TabIndex = 5;
             this.label5.Text = "Idade:";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label4
             // 
@@ -189,12 +178,24 @@ namespace View
             // 
             // ptbFoto
             // 
+            this.ptbFoto.BackColor = System.Drawing.Color.Transparent;
             this.ptbFoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ptbFoto.Location = new System.Drawing.Point(6, 19);
             this.ptbFoto.Name = "ptbFoto";
             this.ptbFoto.Size = new System.Drawing.Size(99, 114);
+            this.ptbFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ptbFoto.TabIndex = 0;
             this.ptbFoto.TabStop = false;
+            this.ptbFoto.DoubleClick += new System.EventHandler(this.ptbFoto_DoubleClick);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(38, 72);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(30, 13);
+            this.label10.TabIndex = 11;
+            this.label10.Text = "3 x 4";
             // 
             // groupBox2
             // 

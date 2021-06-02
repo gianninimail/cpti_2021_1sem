@@ -9,24 +9,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Model;
 using Control;
+using System.IO;
 
 namespace View
 {
     public partial class FrmCadPessoa : Form
     {
+        private byte[] vetorImagens;        
+        
         public FrmCadPessoa()
         {
             InitializeComponent();
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
@@ -60,10 +53,14 @@ namespace View
             p.Nome = txbNome.Text;
             p.Cel = mtbCel.Text;
             p.Email = txbEmail.Text;
+            p.Idade = Convert.ToInt32(nudIdade.Value);
             p.EnderecoPadrao.TipoEnd = ltbTipoEnd.SelectedIndex;
             p.EnderecoPadrao.Logradouro = txbLogradouro.Text;
             p.EnderecoPadrao.Estado = cmbEstado.SelectedIndex;
             p.EnderecoPadrao.Cidade = cmbCidade.SelectedIndex;
+
+            p.Foto.CPF = p.CPF;
+            p.Foto.Imagem = this.vetorImagens;
 
             if (rdbCasado.Checked)
             {
@@ -113,6 +110,8 @@ namespace View
             txbNome.Text = _pessoa.Nome;
             mtbCel.Text = _pessoa.Cel;
             txbEmail.Text = _pessoa.Email;
+            nudIdade.Value = _pessoa.Idade;
+            ptbFoto.Image = Image.FromStream(new MemoryStream(_pessoa.Foto.Imagem));
             ltbTipoEnd.SelectedIndex = _pessoa.EnderecoPadrao.TipoEnd;
             txbLogradouro.Text = _pessoa.EnderecoPadrao.Logradouro;
             cmbEstado.SelectedIndex = _pessoa.EnderecoPadrao.Estado;
@@ -158,6 +157,31 @@ namespace View
             catch (Exception ex)
             {
                 MessageBox.Show("ERRO AO ALTERAR PESSOA: " + ex.Message);
+            }
+        }
+
+        private void ptbFoto_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            { 
+                long tamanhoArquivoImagem = 0;
+
+                string strFn = @"D:\Google Drive\Fotos\IMG_20200904_124452.jpg";
+
+                if (string.IsNullOrEmpty(strFn))
+                    return;
+
+                this.ptbFoto.Image = Image.FromFile(strFn);
+                FileInfo arqImagem = new FileInfo(strFn);
+                tamanhoArquivoImagem = arqImagem.Length;
+                FileStream fs = new FileStream(strFn, FileMode.Open, FileAccess.Read, FileShare.Read);
+                this.vetorImagens = new byte[Convert.ToInt32(tamanhoArquivoImagem)];
+                int iBytesRead = fs.Read(vetorImagens, 0, Convert.ToInt32(tamanhoArquivoImagem));
+                fs.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }
